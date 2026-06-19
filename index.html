@@ -1,54 +1,233 @@
-<img src="casal.jpg" alt="Henrique e sua futura esposa"
-style="width:100%; border-radius:15px; margin-bottom:20px;">
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Construindo Nosso Novo Lar</title>
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial, Helvetica, sans-serif;
+}
+
+body{
+    min-height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    padding:20px;
+    background:linear-gradient(-45deg,#0f172a,#1e3a8a,#2563eb,#38bdf8);
+    background-size:400% 400%;
+    animation:fundo 15s ease infinite;
+}
+
+@keyframes fundo{
+    0%{background-position:0% 50%;}
+    50%{background-position:100% 50%;}
+    100%{background-position:0% 50%;}
+}
+
+.container{
+    width:100%;
+    max-width:750px;
+    background:rgba(255,255,255,0.12);
+    backdrop-filter:blur(15px);
+    border-radius:25px;
+    padding:40px;
+    text-align:center;
+    color:white;
+    box-shadow:0 10px 30px rgba(0,0,0,.25);
+}
+
+h1{
+    font-size:2.2rem;
+    margin-bottom:20px;
+}
+
+p{
+    line-height:1.8;
+    margin-bottom:15px;
+}
+
+.meta{
+    margin-top:30px;
+    margin-bottom:30px;
+}
+
+.progress-container{
+    width:100%;
+    height:30px;
+    background:rgba(255,255,255,.2);
+    border-radius:50px;
+    overflow:hidden;
+}
+
+.progress-bar{
+    height:100%;
+    width:15%;
+    border-radius:50px;
+    background:linear-gradient(90deg,#22c55e,#4ade80);
+    animation:metaAnimada 8s infinite alternate;
+}
+
+@keyframes metaAnimada{
+    0%{
+        width:15%;
+    }
+    25%{
+        width:35%;
+    }
+    50%{
+        width:55%;
+    }
+    75%{
+        width:72%;
+    }
+    100%{
+        width:88%;
+    }
+}
+
+.meta-info{
+    margin-top:15px;
+    font-size:1.1rem;
+    font-weight:bold;
+}
+
+.pix{
+    margin-top:25px;
+    background:rgba(255,255,255,.15);
+    padding:15px;
+    border-radius:12px;
+    word-break:break-all;
+    font-weight:bold;
+}
+
+.copy-button{
+    margin-top:15px;
+    background:#22c55e;
+    border:none;
+    color:white;
+    padding:12px 25px;
+    border-radius:10px;
+    cursor:pointer;
+    font-size:1rem;
+    transition:.3s;
+}
+
+.copy-button:hover{
+    transform:scale(1.05);
+}
+
+.copy-success{
+    display:none;
+    margin-top:10px;
+    color:#bbf7d0;
+    font-weight:bold;
+}
+
+.footer{
+    margin-top:30px;
+    opacity:.9;
+}
+
+@media(max-width:600px){
+
+.container{
+    padding:25px;
+}
+
+h1{
+    font-size:1.8rem;
+}
+
+}
+
+</style>
+
+</head>
+<body>
+
+<div class="container">
 
 <h1>🏠 Construindo Nosso Novo Lar</h1>
 
 <p>
-Depois de muitos sonhos e desafios, estamos iniciando uma nova fase da nossa vida.
+Depois de muitos sonhos, desafios e conquistas, estamos iniciando uma nova etapa da nossa vida juntos.
 </p>
 
 <p>
-Ao invés de presentes tradicionais, criamos este espaço para que amigos, familiares e pessoas especiais possam nos ajudar a montar nossa casa.
+Criamos este espaço para que amigos, familiares e pessoas especiais possam participar da construção do nosso futuro.
 </p>
 
 <p>
-Cada contribuição nos aproxima um pouco mais desse sonho.
+Cada contribuição, independente do valor, representa um passo importante na realização desse sonho.
 </p>
 
-<h2>Meta Atual</h2>
+<div class="meta">
 
-<div style="background:#ddd;border-radius:20px;height:25px;">
-  <div style="
-    width:35%;
-    background:#4caf50;
-    height:25px;
-    border-radius:20px;">
-  </div>
+<h2>Meta do Projeto</h2>
+
+<div class="progress-container">
+    <div class="progress-bar"></div>
 </div>
 
-<p><strong>R$ 4.025 arrecadados de R$ 11.500</strong></p>
+<div class="meta-info">
+Objetivo: R$ 5.000
+</div>
 
-<hr>
-
-<h3>🧊 Geladeira</h3>
-<p>50% concluído</p>
-
-<h3>🔥 Fogão</h3>
-<p>60% concluído</p>
-
-<h3>🛏️ Cama</h3>
-<p>20% concluído</p>
-
-<hr>
-
-<p>
-Qualquer valor faz diferença ❤️
-</p>
+</div>
 
 <div class="pix" id="pixKey">
 0c397cfc-9a35-4be7-a550-3fcb5c9d1afb
 </div>
 
 <button class="copy-button" onclick="copyPix()">
-Copiar chave PIX
+📋 Copiar Chave PIX
 </button>
+
+<div class="copy-success" id="copyMsg">
+✅ Chave PIX copiada com sucesso!
+</div>
+
+<div class="footer">
+❤️ Obrigado por fazer parte desta história ❤️
+</div>
+
+</div>
+
+<script>
+
+function copyPix(){
+
+    const pix = document.getElementById("pixKey").textContent.trim();
+
+    navigator.clipboard.writeText(pix)
+    .then(() => {
+
+        const msg = document.getElementById("copyMsg");
+
+        msg.style.display = "block";
+
+        setTimeout(() => {
+            msg.style.display = "none";
+        }, 2500);
+
+    })
+    .catch(() => {
+
+        alert("Não foi possível copiar automaticamente.");
+
+    });
+
+}
+
+</script>
+
+</body>
+</html>
